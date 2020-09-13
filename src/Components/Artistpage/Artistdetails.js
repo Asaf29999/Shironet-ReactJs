@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         // alignItems: 'center',
-      }, 
-      image: {
+    },
+    image: {
         margin: theme.spacing(3),
         width: '700px',
         height: '400px',// fix sizes
-      },
+    },
 }));
 
 export default function Artistdetails() {
@@ -37,14 +37,10 @@ export default function Artistdetails() {
             <Typography variant="h1" className={classes.title}>
                 {artist.strArtist}
             </Typography>
-           
+
             <GridList container justify="center" cellHeight={0} className={classes.gridList} cols={2}>
-          
-        
-             <h container justify="center">{artist.strBiographyEN}</h>
-        
+                <h container justify="center">{artist.strBiographyEN}</h>
             </GridList>
-          
             <img className={classes.image} src={artist.strArtistClearart}></img>
         </div>
 
