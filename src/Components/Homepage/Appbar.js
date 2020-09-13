@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function AppBar2() {
+export default function TableBar() {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);

@@ -9,22 +9,21 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
-        color: "white",
-        margin: theme.spacing(3),
+        color: "black",
+        //margin: theme.spacing(1),
     },
     gridList: {
-        color: "white",
-        margin: theme.spacing(3),
-        width: '700px',
+        
+        color: "black",
+        width: '100%',
         height: 100,
-        display: 'flex',
-        flexDirection: 'column',
-        // alignItems: 'center',
     },
     image: {
-        margin: theme.spacing(3),
-        width: '700px',
-        height: '400px',// fix sizes
+        margin: theme.spacing(1),
+        width: '200px',
+        height: '200px',
+        alignItems: 'center',
+        borderRadius: '4px;',
     },
 }));
 
@@ -34,14 +33,17 @@ export default function Artistdetails() {
     const artist = store.getState().artist;
     return (
         <div >
-            <Typography variant="h1" className={classes.title}>
+            <Typography variant="h2" className={classes.title}>
                 {artist.strArtist}
-            </Typography>
+            </Typography> 
+           <p>{artist.strStyle}</p>
+                
+            
+            <img className={classes.image} src={artist.strArtistThumb}></img>
 
-            <GridList container justify="center" cellHeight={0} className={classes.gridList} cols={2}>
-                <h container justify="center">{artist.strBiographyEN}</h>
+            <GridList container justify="center" cellHeight={0} className={classes.gridList} cols={0}>
+                <h container>{artist.strBiographyEN}</h>
             </GridList>
-            <img className={classes.image} src={artist.strArtistClearart}></img>
         </div>
 
     )
