@@ -10,53 +10,38 @@ import {setArtist} from '../../../Redux/Actions/actions';
 const songsFunction = (artistname) => {
  
     const getAllAlbumsByArtist = () => {
-        fetch(`https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artistname}`)
+      return fetch(`https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artistname}`)
         .then(response => {
-          console.log(response.json())
-          return response.json()
+         // console.log(response.json())
+          return response.json();
         })
         .then(result => {
-          console.log(result.album)
+         // console.log(result.album)
             return result.album;
-        }).catch(error => {
-             // swal("Cant find this Singer ", "", "error");
-              console.log('error', error)
-            });
+        })
     }
 
-    const getArtistDetails = () => {
+    const getAllSongsByArtist = async () => {
+      const albums = await getAllAlbumsByArtist()
+      console.log(albums)
+      const albumsNames = [];
 
-      // fetch(`https://www.theaudiodb.com/api/v1/json/1/search.php?s=${values.name}`)
-      //   .then(response => {
-      //     return response.json()
-      //   })
-      //   .then(result => {
-      //     if (result.artists == null) {
-      //       throw new Error('cant find singer');
-      //     }
-      //     else {
-      //       console.log(result);
-      //       const artist = result.artists[0];
-      //       dispatch(setArtist(artist));
-      //       console.log(artist);
-      //       console.log(store.getState());
+      albums.forEach(album => {
+        console.log(album.strAlbum)
+        albumsNames.push(album.strAlbum);
 
-      //       // console.log(artist);
-      //       history.push(`/ArtistPage/${values.name}`);
-      //     }
-      //   })
-      //   .catch(error => {
-      //     swal("Cant find this Singer ", "", "error");
-      //     console.log('error', error)
-      //   });
+      });
+    return albumsNames;
+           
     }
 
-   
+
+
 
 
     return {
       getAllAlbumsByArtist,
-      getArtistDetails,
+      getAllSongsByArtist
     }
   }
 

@@ -48,19 +48,18 @@ export default function Artistpage() {
         getArtist
     } = useSearch();
 
-   return (
+    return (
         <div>
             <Paper elevation={3} className={classes.paper}>
                 <Grid container className={classes.root} spacing={2}>
                     <Grid item xs={8}>
-                       <Artissongs/>
+                        <Artissongs />
                     </Grid>
                     <Grid item xs={4}>
                         <Paper className={classes.datapaper}>
                             <Artistdetails></Artistdetails>
                         </Paper>
                     </Grid>
-
                 </Grid>
             </Paper>
         </div >

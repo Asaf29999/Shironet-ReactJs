@@ -4,17 +4,22 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useStore } from 'react-redux';
 import GridList from '@material-ui/core/GridList';
 import Grid from '@material-ui/core/Grid';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import Button from '@material-ui/core/Button';
+
+
 
 
 const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
-        color: "black",
+        color: "#87B2E4",
         //margin: theme.spacing(1),
     },
     gridList: {
-        
-        color: "black",
+
+        color: "#87B2E4",
         width: '100%',
         height: 100,
     },
@@ -35,15 +40,17 @@ export default function Artistdetails() {
         <div >
             <Typography variant="h2" className={classes.title}>
                 {artist.strArtist}
-            </Typography> 
-           <p>{artist.strStyle}</p>
-                
-            
-            <img className={classes.image} src={artist.strArtistThumb}></img>
+            </Typography>
+            <p>{artist.strStyle}</p>
+
+
+            <img className={classes.image} src={artist.strArtistThumb} ></img>
 
             <GridList container justify="center" cellHeight={0} className={classes.gridList} cols={0}>
                 <h container>{artist.strBiographyEN}</h>
             </GridList>
+            <Button color="secondary" alt = "add to favorites">{ false ? <FavoriteIcon/>:<FavoriteBorderIcon/>}</Button>
+
         </div>
 
     )
