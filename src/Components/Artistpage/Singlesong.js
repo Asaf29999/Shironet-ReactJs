@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import songsFunction from './Functions/songsFunctions'
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import swal from 'sweetalert';
 
 
 
@@ -26,23 +27,41 @@ const useStyles = makeStyles((theme) => ({
 
 const Singlesong = props => {
     const classes = useStyles();
-    const [song] = useState(props.name)
-    const handleclick = () => { }
+    const [song] = useState(props.song)
+    
+    const handleclick = () => {
+        fetch(`https://orion.apiseeds.com/api/music/lyric/${song.strArtist}/${song.strTrack}\n?apikey=TkIoaPW9oBHoyUUdjq2H4p6aPZKv9XeikU4WqxKZmKXgNsmAp2LhoQ9mhfkvnMPV`)
+        .then(response => {
+          return response.json();
+        })
+        .then(result => {
+          console.log(result);
+          if(result.result != null){
+          swal(result.result.track.name, result.result.track.text ? result.result.track.text: "empty" , );
+          }else{
+            swal(`${result.error} `, "", "error");
+            // window.scrollTo({
+            //     top: 0,
+            //     behavior: "smooth"
+            //   });
+          }
+        })
+       
+     }
 
 
 
 
     return (
         <div >
-
             <Grid
                 container
                 alignItems="center"
                 spacing={2}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
-                        <Button color="secondary" onClick={handleclick} >{song}</Button>
-                        <p>{song}</p>
+                        <Button color="secondary" onClick={handleclick} >{song.strTrack}</Button>
+                        <p>{song.strAlbum}</p>
                     </Paper>
                 </Grid>
 

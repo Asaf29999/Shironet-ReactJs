@@ -1,49 +1,64 @@
 import swal from 'sweetalert';
-import {useCallback } from 'react';
+import { useCallback } from 'react';
 import { useHistory } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useDispatch, useStore} from 'react-redux'
-import {setArtist} from '../../../Redux/Actions/actions';
+import { useDispatch, useStore } from 'react-redux'
+import { setArtist } from '../../../Redux/Actions/actions';
 
 
 const songsFunction = (artistname) => {
- 
-    const getAllAlbumsByArtist = () => {
-      return fetch(`https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artistname}`)
-        .then(response => {
-         // console.log(response.json())
-          return response.json();
-        })
-        .then(result => {
-         // console.log(result.album)
-            return result.album;
-        })
-    }
 
-    const getAllSongsByArtist = async () => {
-      const albums = await getAllAlbumsByArtist()
-      console.log(albums)
-      const albumsNames = [];
-
-      albums.forEach(album => {
-        console.log(album.strAlbum)
-        albumsNames.push(album.strAlbum);
-
-      });
-    return albumsNames;
-           
-    }
-
-
-
-
-
-    return {
-      getAllAlbumsByArtist,
-      getAllSongsByArtist
+  const getAllAlbumsByArtist = () => {
+    return fetch(`https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artistname}`)
+      .then(response => {
+        // console.log(response.json())
+        return response.json();
+      })
+      .then(result => {
+        // console.log(result.album)
+        return result.album;
+      })
+  }
+  
+  async function asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+      await callback(array[index], index, array);
     }
   }
+  const getAllSongsByArtist = async () => {
+    const albums = await getAllAlbumsByArtist()
+    console.log(albums)
+    const songs = [];
+
+    await asyncForEach(albums, async (album) => {
+      const allAlbumSongs = await getAllSongsByAlbum(album.idAlbum)
+      await songs.push(...allAlbumSongs);
+      console.log(songs)
+    });
+
+    console.log(songs)
+    return songs; 
+  }
+
+  const getAllSongsByAlbum = (albumid) => {
+    return fetch(`https://theaudiodb.com/api/v1/json/1/track.php?m=${albumid}`)
+      .then(response => {
+        return response.json();
+      })
+      .then(result => {
+        console.log(result);
+        return result.track;
+      })
+  }
+
+
+
+  return {
+    getAllAlbumsByArtist,
+    getAllSongsByArtist
+  }
+}
 
 
 export default songsFunction;

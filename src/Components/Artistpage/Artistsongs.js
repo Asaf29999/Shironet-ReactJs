@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     height: 200,
     width: 800,
     //padding: theme.spacing(10),
-  
+
 
   },
   gridList: {
@@ -25,12 +25,12 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: 500,
     paddingLeft: 210,
-},
-title:{
-  flexGrow: 1,
-  color: "white",
-  margin: theme.spacing(1),
-},
+  },
+  title: {
+    flexGrow: 1,
+    color: "white",
+    margin: theme.spacing(1),
+  },
 }));
 
 const Artistsongs = () => {
@@ -44,26 +44,30 @@ const Artistsongs = () => {
     getAllSongsByArtist
   } = songsFunction(artist.strArtist);
 
-  let albumsnames = [];
+   let allsongs = [];
 
   useEffect(async () => {
-    let albumsnames = await getAllSongsByArtist();
-    console.log(albumsnames);
-    setSongs(albumsnames)
-  }, albumsnames);
+    let allsongs = await getAllSongsByArtist();
+    console.log(allsongs);
+    console.log("--------------------------------------------------------------");
+  await setSongs(allsongs)
+   // console.log(songs);
 
+  }, allsongs);
 
-  console.log(songs);
+ console.log(songs);
   return (
 
     <div className={classes.root} >
 
       <Typography variant="h1" className={classes.title}>
-      Songs
+        Songs
       </Typography>
       <GridList container cellHeight={0} className={classes.gridList} cols={0}>
         <h container>  {songs.map(function (listValue) {
-          return <Singlesong name={listValue} />;
+          console.log(songs);
+          console.log(listValue);
+          return <Singlesong song={listValue} />;
         })}</h>
       </GridList>
     </div>
