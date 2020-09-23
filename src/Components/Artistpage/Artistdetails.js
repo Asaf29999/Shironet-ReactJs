@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useStore } from 'react-redux';
@@ -9,6 +9,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { useHistory } from "react-router-dom";
+
 
 
 
@@ -40,6 +41,8 @@ export default function Artistdetails() {
     const store = useStore()
     const artist = store.getState().artist;
     const history = useHistory();
+    const [fav, setFav] = useState(false);
+
     
     function HomeIcon(props) {
         return (
@@ -54,14 +57,12 @@ export default function Artistdetails() {
                 {artist.strArtist}
             </Typography>
             <p>{artist.strStyle}</p>
-
-
             <img className={classes.image} src={artist.strArtistThumb} ></img>
 
             <GridList container justify="center" cellHeight={0} className={classes.gridList} cols={0}>
                 <h container>{artist.strBiographyEN}</h>
             </GridList>
-            <Button alt = "add to favorites">{ false ? <FavoriteIcon/>:<FavoriteBorderIcon/>}</Button>
+            <Button  onClick = {()=>{setFav(!fav)}} >{ fav ? <FavoriteIcon color = "secondary"/>:<FavoriteBorderIcon/>}</Button>
             <Button onClick={()=>{history.push("/"); }} >{<HomeIcon color="primary"/>}</Button>
 
         </div>

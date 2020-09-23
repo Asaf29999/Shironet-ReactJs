@@ -14,15 +14,6 @@ const useSearch = () => {
     const dispatch = useDispatch()
     const store = useStore()
 
-
-    // useEffect(() => {
-    //   console.log(artist);
-    // }, [artist]);
-
-    const getAllAlbumsByArtist = (name) => {
-
-    }
-
     const getArtistDetails = () => {
 
       fetch(`https://www.theaudiodb.com/api/v1/json/1/search.php?s=${values.name}`)
@@ -54,15 +45,9 @@ const useSearch = () => {
       event.persist();
       setValues(values => ({ ...values, [event.target.name]: event.target.value }));
     };
-
-    // const getArtist = () => {
-    //   console.log(this.artist);
-    //   return this.artist;
-    // }
-
-
+    
     return {
-      getAllAlbumsByArtist,
+      
       getArtistDetails,
       handleChange
     }

@@ -12,6 +12,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import Searchbar from './Searchbar'
+import Favoritestable from './FavoritesTable'
+import Recenttable from './RecentTable'
 
 
 function TabPanel(props) {
@@ -52,14 +54,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#87B2E4",
     width: 500,
     boxShadow: '0 17px 50px 0 rgba(0,0,0,.19), 0 12px 15px 0 rgba(0,0,0,.10);',
-    zIndex:'3',
+    zIndex: '3',
   },
-  title:{
+  title: {
     flexGrow: 1,
     color: "white",
     margin: theme.spacing(3),
   },
-  tab:{
+  tab: {
     flexGrow: 1,
     backgroundColor: "white",
   }
@@ -79,43 +81,43 @@ export default function TableBar() {
   };
 
   return (
-      <div>
+    <div>
       <Typography variant="h1" className={classes.title}>
-      Lyrics
+        Lyrics
       </Typography>
-          <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
+      <div className={classes.root}>
+        <AppBar position="static" color="default">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="fullWidth"
+            aria-label="full width tabs example"
+          >
+            <Tab label={<SearchIcon />} {...a11yProps(0)} />
+            <Tab label={<FavoriteIcon />} {...a11yProps(1)} />
+            <Tab label={<RestoreIcon />} {...a11yProps(2)} />
+
+          </Tabs>
+        </AppBar>
+        <SwipeableViews
+          axis={theme.direction === 'ltr' ? 'x-reverse' : 'x'}
+          index={value}
+          onChangeIndex={handleChangeIndex}
         >
-          <Tab label = {<SearchIcon />} {...a11yProps(0)}/> 
-          <Tab label={<FavoriteIcon/>} {...a11yProps(1)} />
-          <Tab label={<RestoreIcon/>} {...a11yProps(2)} />
-          
-        </Tabs>
-      </AppBar>
-      <SwipeableViews
-        axis={theme.direction === 'ltr' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
-        <TabPanel value={value} index={0} dir={theme.direction} className ={classes.tab} >
-         <Searchbar/>
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction} className ={classes.tab} >
-          Item Two
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction} className ={classes.tab} >
-          Item Three
-        </TabPanel>
-      </SwipeableViews>
+          <TabPanel value={value} index={0} dir={theme.direction} className={classes.tab} >
+            <Searchbar />
+          </TabPanel>
+          <TabPanel value={value} index={1} dir={theme.direction} className={classes.tab} >
+            <Favoritestable />
+          </TabPanel>
+          <TabPanel value={value} index={2} dir={theme.direction} className={classes.tab} >
+            <Recenttable />
+          </TabPanel>
+        </SwipeableViews>
+      </div>
     </div>
-    </div>
-    
+
   );
 }
