@@ -44,15 +44,15 @@ const Artistsongs = () => {
     getAllSongsByArtist
   } = songsFunction(artist.strArtist);
 
-
-  useEffect(() => {
-    async function fetchMyAPI() {
+  async function fetchMyAPI() {
     let songs = await getAllSongsByArtist();
     console.log(songs);
     console.log("--------------------------------------------------------------");
     await setSongs(songs)
    // console.log(songs);
     }
+  useEffect(() => {
+   
     fetchMyAPI()
   }, []);
 

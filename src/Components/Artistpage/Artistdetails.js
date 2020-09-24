@@ -11,13 +11,6 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import { useHistory } from "react-router-dom";
 import { addFavorite } from '../../Redux/Actions/actions';
 
-
-
-
-
-
-
-
 const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,

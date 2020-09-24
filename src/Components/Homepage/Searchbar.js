@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
- const Searchbar =()=> {
+const Searchbar = () => {
   const classes = useStyles();
   const {
     convertedName,
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     handleChange,
   } = useSearch();
   const store = useStore()
-const top100Films = store.getState().recents;
+  const top100Films = store.getState().recents;
 
 
   return (

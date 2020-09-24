@@ -22,26 +22,26 @@ const useStyles = makeStyles((theme) => ({
 const Singlesong = props => {
     const classes = useStyles();
     const [song] = useState(props.song)
-    
+
     const handleclick = () => {
         fetch(`https://orion.apiseeds.com/api/music/lyric/${song.strArtist}/${song.strTrack}\n?apikey=TkIoaPW9oBHoyUUdjq2H4p6aPZKv9XeikU4WqxKZmKXgNsmAp2LhoQ9mhfkvnMPV`)
-        .then(response => {
-          return response.json();
-        })
-        .then(result => {
-          console.log(result);
-          if(result.result != null){
-          swal(result.result.track.name, result.result.track.text ? result.result.track.text: "empty" , );
-          }else{
-            swal(`${result.error} `, "", "error");
-            // window.scrollTo({
-            //     top: 0,
-            //     behavior: "smooth"
-            //   });
-          }
-        })
-       
-     }
+            .then(response => {
+                return response.json();
+            })
+            .then(result => {
+                console.log(result);
+                if (result.result != null) {
+                    swal(result.result.track.name, result.result.track.text ? result.result.track.text : "empty",);
+                } else {
+                    swal(`${result.error} `, "", "error");
+                    // window.scrollTo({
+                    //     top: 0,
+                    //     behavior: "smooth"
+                    //   });
+                }
+            })
+
+    }
 
 
 

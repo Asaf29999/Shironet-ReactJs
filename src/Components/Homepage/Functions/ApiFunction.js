@@ -27,12 +27,12 @@ const useSearch = () => {
           else {
             console.log(result);
             const artist = result.artists[0];
-            var x = []
-            x.includes()
+           
             if(!store.getState().recents.includes(artist)){// fix this
               dispatch(addRecent(artist));
             }
             dispatch(setArtist(artist));
+           
             console.log(artist);
             console.log(store.getState());
 
@@ -52,7 +52,6 @@ const useSearch = () => {
     };
     
     return {
-      
       getArtistDetails,
       handleChange
     }

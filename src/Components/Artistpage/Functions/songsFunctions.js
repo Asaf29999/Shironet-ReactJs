@@ -31,6 +31,7 @@ const songsFunction = (artistname) => {
     console.log(albums)
     const songs = [];
     if (albums != null) {
+      // fix 
       await asyncForEach(albums, async (album) => {
         const allAlbumSongs = await getAllSongsByAlbum(album.idAlbum)
         await songs.push(...allAlbumSongs);
