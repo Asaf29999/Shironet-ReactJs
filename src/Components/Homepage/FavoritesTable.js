@@ -1,7 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { useDispatch, useStore } from 'react-redux'
+import { useDispatch, useStore } from 'react-redux';
+import {setArtist} from '../../Redux/Actions/actions';
+import { useHistory } from "react-router-dom";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -12,77 +15,38 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+
 export default function Favoritestab() {
     const classes = useStyles();
     const dispatch = useDispatch()
     const store = useStore()
+    const history = useHistory();
+
 
     const favorList = store.getState().favorites
     console.log(favorList);
-    // const favorList =["asdas","as","asasdasd","asda"];
 
-    function handleClick() {
-        //send to the artist page again
-    }
+    const Handleclick = (artist) =>{
+        console.log(artist);
+    
+        dispatch(setArtist(artist));
+        history.push(`/ArtistPage/${artist.strArtist}`); 
+       }
+    
 
+    
     return (
         <div className={classes.root}>
             {favorList.map(function (listValue) {
-                if (listValue.length < 4) {
-                    return <Button variant="outlined" onClick={handleClick}>{listValue}</Button>;
-                }
-                else if (listValue.length > 3 && listValue.length < 7) {
-                    return <Button color="primary" variant="outlined" onClick={handleClick}>{listValue}</Button>;
+                if (listValue.strArtist.length < 4) {
+                    return <Button color="secondary" variant="outlined" onClick={()=>{Handleclick(listValue)}}>{listValue.strArtist}</Button>;
                 }
                 else {
-                    return <Button color="secondary" variant="outlined" onClick={handleClick}>{listValue}</Button>;
+                    return <Button color="primary" variant="outlined" onClick={()=>{Handleclick(listValue)}}>{listValue.strArtist}</Button>;
                 }
+               
             })}
-            <Button variant="outlined">Default</Button>
-            <Button variant="outlined" color="primary">
-                Primary
-      </Button>
-            <Button variant="outlined" color="secondary">
-                Secondary
-      </Button>
-            <Button variant="outlined" disabled>
-                Disabled
-      </Button>
-            <Button variant="outlined" color="primary" href="#outlined-buttons">
-                Link
-      </Button>
-            <Button variant="outlined">Default</Button>
-            <Button variant="outlined" color="primary">
-                Primary
-      </Button>
-            <Button variant="outlined" color="secondary">
-                Secondary
-      </Button>
-            <Button variant="outlined" disabled>
-                Disabled
-      </Button>
-            <Button variant="outlined" color="primary" href="#outlined-buttons">
-                Link
-      </Button>
-            <Button variant="outlined" color="secondary">
-                Secondary
-      </Button> <Button variant="outlined" color="secondary">
-                Secondary
-      </Button> <Button variant="outlined" color="secondary">
-                Secondary
-      </Button> <Button variant="outlined" color="secondary">
-                Secondary
-      </Button> <Button variant="outlined" color="secondary">
-                Secondary
-      </Button> <Button variant="outlined" color="secondary">
-                Secondary
-      </Button> <Button variant="outlined" color="secondary">
-                Secondary
-      </Button> <Button variant="outlined" color="secondary">
-                Secondary
-      </Button> <Button variant="outlined" color="secondary">
-                Secondary
-      </Button>
         </div>
     );
 }

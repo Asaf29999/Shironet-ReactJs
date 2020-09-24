@@ -14,12 +14,12 @@ function rootReducer(state = initialState, action) {
       }
      else if (action.type === ADD_FAVORITE) {
         return Object.assign({}, state, {
-          favorites: action.payload
+          favorites: [...state.favorites, action.text]
         });
       }
       else if (action.type === ADD_RECENT) {
         return Object.assign({}, state, {
-          recents: action.payload
+          recents: [...state.recents, action.text]
         });
       }
   return state;

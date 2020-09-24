@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { useStore } from 'react-redux';
-import GridList from '@material-ui/core/GridList';
 import Grid from '@material-ui/core/Grid';
-import songsFunction from './Functions/songsFunctions'
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import swal from 'sweetalert';
-
-
 
 
 const useStyles = makeStyles((theme) => ({

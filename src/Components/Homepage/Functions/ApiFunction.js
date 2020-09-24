@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useDispatch, useStore} from 'react-redux'
-import {setArtist} from '../../../Redux/Actions/actions';
+import {setArtist,addRecent} from '../../../Redux/Actions/actions';
 
 
 const useSearch = () => {
@@ -27,6 +27,11 @@ const useSearch = () => {
           else {
             console.log(result);
             const artist = result.artists[0];
+            var x = []
+            x.includes()
+            if(!store.getState().recents.includes(artist)){// fix this
+              dispatch(addRecent(artist));
+            }
             dispatch(setArtist(artist));
             console.log(artist);
             console.log(store.getState());
