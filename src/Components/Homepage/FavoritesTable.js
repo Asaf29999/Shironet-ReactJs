@@ -1,11 +1,9 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
+import { useDispatch, useStore } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { useDispatch, useStore } from 'react-redux';
 import {setArtist} from '../../Redux/Actions/actions';
-import { useHistory } from "react-router-dom";
-
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -15,14 +13,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
-
 export default function Favoritestab() {
     const classes = useStyles();
     const dispatch = useDispatch()
     const store = useStore()
     const history = useHistory();
-
 
     const favorList = store.getState().favorites
     console.log(favorList);
@@ -33,9 +28,7 @@ export default function Favoritestab() {
         dispatch(setArtist(artist));
         history.push(`/ArtistPage/${artist.strArtist}`); 
        }
-    
-
-    
+        
     return (
         <div className={classes.root}>
             {favorList.map(function (listValue) {

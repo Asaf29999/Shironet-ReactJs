@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
+import React, { useState } from 'react';
 import swal from 'sweetalert';
-
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(5),
-        // height: 10,
-        // width: 600,
         textAlign: 'center',
         color: theme.palette.text.secondary,
         boxShadow: '0 17px 50px 0 rgba(0,0,0,.19), 0 12px 15px 0 rgba(0,0,0,.10);',
         borderRadius: '3px;',
-
     },
 }));
 
@@ -34,17 +30,9 @@ const Singlesong = props => {
                     swal(result.result.track.name, result.result.track.text ? result.result.track.text : "empty",);
                 } else {
                     swal(`${result.error} `, "", "error");
-                    // window.scrollTo({
-                    //     top: 0,
-                    //     behavior: "smooth"
-                    //   });
                 }
             })
-
     }
-
-
-
 
     return (
         <div >
@@ -58,12 +46,8 @@ const Singlesong = props => {
                         <p>{song.strAlbum}</p>
                     </Paper>
                 </Grid>
-
             </Grid>
-
-
         </div>
-
     )
 }
 export default Singlesong;

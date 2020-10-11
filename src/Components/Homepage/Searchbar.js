@@ -1,14 +1,14 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import Icon from '@material-ui/core/Icon';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
-import Grid from '@material-ui/core/Grid';
-import useSearch from './Functions/ApiFunction'
-import { useDispatch, useStore } from 'react-redux';
+import { useStore } from 'react-redux';
 
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import SearchIcon from '@material-ui/icons/Search';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
+import useSearch from './Functions/ApiFunction'
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -19,18 +19,14 @@ const useStyles = makeStyles((theme) => ({
 const Searchbar = () => {
   const classes = useStyles();
   const {
-    convertedName,
-    getAllAlbumsByArtist,
     getArtistDetails,
     handleChange,
   } = useSearch();
   const store = useStore()
   const top100Films = store.getState().recents;
 
-
   return (
     <Grid container className={classes.root} spacing={2}>
-
       <Grid item xs={12} sm={7}>
         <Autocomplete
           freeSolo
@@ -67,4 +63,3 @@ const Searchbar = () => {
   );
 }
 export default Searchbar
-

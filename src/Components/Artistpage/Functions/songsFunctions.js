@@ -1,45 +1,34 @@
-// import swal from 'sweetalert';
-// import { useCallback } from 'react';
-// import { useHistory } from "react-router-dom";
-// import { useState, useEffect } from 'react';
-// import { connect } from 'react-redux';
-// import { useDispatch, useStore } from 'react-redux'
-// import { setArtist } from '../../../Redux/Actions/actions';
-
-
 const songsFunction = (artistname) => {
 
   const getAllAlbumsByArtist = () => {
     return fetch(`https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artistname}`)
       .then(response => {
-        // console.log(response.json())
         return response.json();
       })
       .then(result => {
-        // console.log(result.album)
         return result.album;
       })
   }
 
-  async function asyncForEach(array, callback) {
-    for (let index = 0; index < array.length; index++) {
-      await callback(array[index], index, array);
-    }
-  }
   const getAllSongsByArtist = async () => {
     const albums = await getAllAlbumsByArtist()
+    const albumsPromises = [];
     console.log(albums)
-    const songs = [];
+    var songs = [];
+  
     if (albums != null) {
-      // fix 
-      await asyncForEach(albums, async (album) => {
-        const allAlbumSongs = await getAllSongsByAlbum(album.idAlbum)
-        await songs.push(...allAlbumSongs);
-        console.log(songs)
+      albums.forEach(album => {
+        const promise = getAllSongsByAlbum(album.idAlbum)
+        albumsPromises.push(promise);
+      })
+     await Promise.all(albumsPromises).then((allAlbumSongs) => {
+        allAlbumSongs.forEach(album =>{
+           songs = songs.concat(album);
+        })
       });
     }
     console.log(songs)
-    return songs;
+    return (songs);
   }
 
   const getAllSongsByAlbum = (albumid) => {
@@ -53,13 +42,10 @@ const songsFunction = (artistname) => {
       })
   }
 
-
-
   return {
     getAllAlbumsByArtist,
     getAllSongsByArtist
   }
 }
-
 
 export default songsFunction;

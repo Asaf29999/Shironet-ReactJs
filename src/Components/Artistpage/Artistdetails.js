@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useStore } from 'react-redux'
+import { useHistory } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch, useStore } from 'react-redux'
 import GridList from '@material-ui/core/GridList';
-import Grid from '@material-ui/core/Grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import { useHistory } from "react-router-dom";
 import { addFavorite } from '../../Redux/Actions/actions';
 
 const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
         color: "#87B2E4",
-        //margin: theme.spacing(1),
     },
     gridList: {
         color: "#87B2E4",
@@ -39,7 +37,6 @@ export default function Artistdetails() {
     const history = useHistory();
     const [fav, setFav] = useState(false);
 
-
     function HandleFavorite() {
         setFav(!fav)
 
@@ -50,7 +47,6 @@ export default function Artistdetails() {
         else {
             // remove from store
         }
-
     }
 
     function HomeIcon(props) {
@@ -66,15 +62,13 @@ export default function Artistdetails() {
                 {artist.strArtist}
             </Typography>
             <p>{artist.strStyle}</p>
-            <img className={classes.image} src={artist.strArtistThumb} ></img>
+            <img className={classes.image} src={artist.strArtistThumb} alt={artist.strArtist} ></img>
 
             <GridList container justify="center" cellHeight={0} className={classes.gridList} cols={0}>
                 <h container>{artist.strBiographyEN}</h>
             </GridList>
             <Button onClick={HandleFavorite} >{fav ? <FavoriteIcon color="secondary" /> : <FavoriteBorderIcon />}</Button>
             <Button onClick={() => { history.push("/"); }} >{<HomeIcon color="primary" />}</Button>
-
         </div>
-
     )
 }

@@ -1,14 +1,10 @@
+import { useState } from 'react';
 import swal from 'sweetalert';
-import {useCallback } from 'react';
 import { useHistory } from "react-router-dom";
-import { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 import { useDispatch, useStore} from 'react-redux'
 import {setArtist,addRecent} from '../../../Redux/Actions/actions';
 
-
 const useSearch = () => {
- 
     const history = useHistory();
     const [values, setValues] = useState({});
     const dispatch = useDispatch()
@@ -32,11 +28,6 @@ const useSearch = () => {
               dispatch(addRecent(artist));
             }
             dispatch(setArtist(artist));
-           
-            console.log(artist);
-            console.log(store.getState());
-
-            // console.log(artist);
             history.push(`/ArtistPage/${values.name}`);
           }
         })
@@ -56,6 +47,5 @@ const useSearch = () => {
       handleChange
     }
   }
-
 
 export default useSearch;

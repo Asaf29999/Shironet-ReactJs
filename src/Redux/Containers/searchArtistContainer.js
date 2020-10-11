@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import ApiFunction from '../../Components/Homepage/Functions/ApiFunction'
 import {setArtist} from '../Actions/actions';
+import ApiFunction from '../../Components/Homepage/Functions/ApiFunction'
 
 const mapStateToProps = (state) => {
    return {
