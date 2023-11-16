@@ -7,10 +7,10 @@
 // import { setArtist } from '../../../Redux/Actions/actions';
 
 
-const songsFunction = (artistname) => {
+const songsFunction = (idArtist) => {
 
   const getAllAlbumsByArtist = () => {
-    return fetch(`https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artistname}`)
+    return fetch(`https://theaudiodb.com/api/v1/json/2/album.php?i=${idArtist}`)
       .then(response => {
         // console.log(response.json())
         return response.json();

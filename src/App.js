@@ -6,8 +6,8 @@ import {
   Route
 } from "react-router-dom";
 
-import Homepage from './Components/Homepage/Homepage'
-import Artistpage from './Components/Artistpage/Artistpage'
+import Homepage from './Components/Homepage/Homepage.js'
+import Artistpage from './Components/Artistpage/Artistpage.js'
 
 
 class App extends React.Component {

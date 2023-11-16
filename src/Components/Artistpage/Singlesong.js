@@ -51,8 +51,9 @@ const Singlesong = props => {
             <Grid
                 container
                 alignItems="center"
-                spacing={2}>
+                spacing={4}>
                 <Grid item xs={12}>
+                {/* <img alt="" className={classes.image} src={song.strArtistThumb} ></img> */}
                     <Paper className={classes.paper}>
                         <Button color="secondary" onClick={handleclick} >{song.strTrack}</Button>
                         <p>{song.strAlbum}</p>

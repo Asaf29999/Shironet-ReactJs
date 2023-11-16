@@ -20,10 +20,9 @@ const useStyles = makeStyles((theme) => ({
 
   },
   gridList: {
-
     // color: "black",
     width: '100%',
-    height: 500,
+    height: 1000,
     paddingLeft: 210,
   },
   title: {
@@ -42,7 +41,7 @@ const Artistsongs = () => {
   const {
     getAllAlbumsByArtist,
     getAllSongsByArtist
-  } = songsFunction(artist.strArtist);
+  } = songsFunction(artist.idArtist);
 
   async function fetchMyAPI() {
     let songs = await getAllSongsByArtist();

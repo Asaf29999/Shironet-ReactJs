@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     gridList: {
         color: "#87B2E4",
         width: '100%',
-        height: 100,
+        height: 300,
     },
     image: {
         margin: theme.spacing(1),
@@ -66,10 +66,10 @@ export default function Artistdetails() {
                 {artist.strArtist}
             </Typography>
             <p>{artist.strStyle}</p>
-            <img className={classes.image} src={artist.strArtistThumb} ></img>
+            <img alt="" className={classes.image} src={artist.strArtistThumb} ></img>
 
             <GridList container justify="center" cellHeight={0} className={classes.gridList} cols={0}>
-                <h container>{artist.strBiographyEN}</h>
+                <h container>{artist.strBiographyIL}</h>
             </GridList>
             <Button onClick={HandleFavorite} >{fav ? <FavoriteIcon color="secondary" /> : <FavoriteBorderIcon />}</Button>
             <Button onClick={() => { history.push("/"); }} >{<HomeIcon color="primary" />}</Button>

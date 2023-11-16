@@ -6,8 +6,8 @@ import { useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import Artistdetails from './Artistdetails'
-import Artissongs from './Artistsongs'
+import Artistdetails from './Artistdetails.js'
+import Artissongs from './Artistsongs.js'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
         zIndex: '2',
-        height: '500px',
+        height: '900px',
         borderRadius: '3px;',
         backgroundColor: "#87B2E4",
         boxShadow: '0 17px 50px 0 rgba(0,0,0,.19), 0 12px 15px 0 rgba(0,0,0,.10);',
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
         alignItems: 'center',
         zIndex: '3',
-        height: '550px',
+        height: '700px',
         borderRadius: '8px;',
         backgroundColor: "white",
         boxShadow: '0 17px 50px 0 rgba(0,0,0,.19), 0 12px 15px 0 rgba(0,0,0,.10);',

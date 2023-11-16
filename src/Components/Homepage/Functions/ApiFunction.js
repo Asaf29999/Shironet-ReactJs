@@ -16,7 +16,7 @@ const useSearch = () => {
 
     const getArtistDetails = () => {
 
-      fetch(`https://www.theaudiodb.com/api/v1/json/1/search.php?s=${values.name}`)
+      fetch(`https://www.theaudiodb.com/api/v1/json/2/search.php?s=${values.name}`)
         .then(response => {
           return response.json()
         })
